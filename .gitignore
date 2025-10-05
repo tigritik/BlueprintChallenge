@@ -58,3 +58,6 @@ temp/
 # Vite/Next.js specific
 .next/
 .vite/
+
+#Python
+*.pyc
