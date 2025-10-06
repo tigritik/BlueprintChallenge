@@ -1,8 +1,8 @@
-import datetime
-
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+
+from src.logs import fetch_logs, add_log
 
 app = FastAPI()
 
@@ -22,20 +22,22 @@ class RequestBody(BaseModel):
 
 
 @app.post("/api/v1/encrypt")
-async def encrypt(body: RequestBody):
-    print(body)
-    return {"data": body.key}
+async def encrypt(request: Request, body : RequestBody):
+    data = body.key
+    ip = request.client.host
+    await add_log(ip, data)
+    return {"data": data}
 
 @app.post("/api/v1/decrypt")
-async def decrypt(body: RequestBody):
-    print(body)
-    return {"data": body.key}
+async def decrypt(request: Request, body: RequestBody):
+    data = body.key
+    ip = request.client.host
+    await add_log(ip, data)
+    return {"data": data}
 
 @app.get("/api/v1/logs")
-async def get_logs():
-    return [ {
-        "id": "uuid",
-        "timestamp": datetime.datetime.now().timestamp(),
-        "ip": "127.0.0.1",
-        "data": "payload"
-    }]
+async def get_logs(size: int, offset: int):
+    if size < 0 or offset < 0:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+
+    return await fetch_logs(size, offset)
