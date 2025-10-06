@@ -10,7 +10,7 @@ function DecryptPayload() {
     const [data, setData] = useState("");
 
     function decryptPayload() {
-        decrypt(payload, key).then(setData);
+        decrypt(key, payload).then(setData);
     }
 
     return (

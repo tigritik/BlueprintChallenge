@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+from src.crypto import encrypt_payload, decrypt_payload
 from src.logs import fetch_logs, add_log
 
 app = FastAPI()
@@ -22,15 +23,15 @@ class RequestBody(BaseModel):
 
 
 @app.post("/api/v1/encrypt")
-async def encrypt(request: Request, body : RequestBody):
-    data = body.key
+async def encrypt(request: Request, body: RequestBody):
+    data = encrypt_payload(body.key, body.payload)
     ip = request.client.host
     await add_log(ip, data)
     return {"data": data}
 
 @app.post("/api/v1/decrypt")
 async def decrypt(request: Request, body: RequestBody):
-    data = body.key
+    data = decrypt_payload(body.key, body.payload)
     ip = request.client.host
     await add_log(ip, data)
     return {"data": data}

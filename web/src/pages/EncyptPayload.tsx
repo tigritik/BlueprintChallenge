@@ -10,7 +10,7 @@ function EncryptPayload() {
     const [data, setData] = useState("");
 
     function encryptPayload() {
-        encrypt(payload, key).then(setData);
+        encrypt(key, payload).then(setData);
     }
 
     return (
