@@ -26,14 +26,14 @@ class RequestBody(BaseModel):
 async def encrypt(request: Request, body: RequestBody):
     data = encrypt_payload(body.key, body.payload)
     ip = request.client.host
-    await add_log(ip, data)
+    add_log(ip, data)
     return {"data": data}
 
 @app.post("/api/v1/decrypt")
 async def decrypt(request: Request, body: RequestBody):
     data = decrypt_payload(body.key, body.payload)
     ip = request.client.host
-    await add_log(ip, data)
+    add_log(ip, data)
     return {"data": data}
 
 @app.get("/api/v1/logs")
@@ -41,4 +41,4 @@ async def get_logs(size: int, offset: int):
     if size < 0 or offset < 0:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 
-    return await fetch_logs(size, offset)
+    return fetch_logs(size, offset)

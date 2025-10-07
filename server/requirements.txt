@@ -6,6 +6,7 @@ colorama==0.4.6
 fastapi==0.118.0
 h11==0.16.0
 idna==3.10
+psycopg2==2.9.10
 pycparser==2.23
 pydantic==2.11.10
 pydantic_core==2.33.2
