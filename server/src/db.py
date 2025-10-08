@@ -1,9 +1,10 @@
+import os
 import psycopg2
 
 
 def _connect():
     connection = psycopg2.connect(
-        host='localhost',
+        host=os.getenv("DB_HOST"),
         dbname='blueprint_db',
         user='admin',
         password='admin'

@@ -5,9 +5,14 @@ from pydantic import BaseModel
 from src.crypto import encrypt_payload, decrypt_payload
 from src.logs import fetch_logs, add_log
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 app = FastAPI()
 
-origins = ["http://localhost:5173"]
+origins = [os.getenv("FRONTEND_ORIGIN")]
 
 app.add_middleware(
     CORSMiddleware,
