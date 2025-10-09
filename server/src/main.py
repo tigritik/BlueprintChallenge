@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from src.crypto import encrypt_payload, decrypt_payload
-from src.logs import fetch_logs, add_log
+from src.logs import fetch_logs, add_log, get_log_count
 
 from dotenv import load_dotenv
 import os
@@ -47,3 +47,7 @@ async def get_logs(size: int, offset: int):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 
     return fetch_logs(size, offset)
+
+@app.get("/api/v1/log-count")
+async def count_logs():
+    return {"count": get_log_count()}

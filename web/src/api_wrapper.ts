@@ -35,3 +35,9 @@ export async function getLogs(size: number, offset: number) {
     if (!response.ok) return [];
     return await response.json() as Log[];
 }
+
+export async function getLogCount() {
+    const response = await fetch(`${apiEndpoint}/log-count`);
+    if (!response.ok) return 0;
+    return (await response.json()).count as number;
+}
