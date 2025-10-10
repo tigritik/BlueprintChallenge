@@ -12,7 +12,6 @@ def add_log(ip: str, data: str):
 
 def fetch_logs(count: int, offset: int):
     logs = select("logs")
-    print(logs)
     return list(map(
         lambda x: {"uuid": x[0], "timestamp": x[1], "ip": x[2], "data": x[3]},
         logs[offset:offset+count]

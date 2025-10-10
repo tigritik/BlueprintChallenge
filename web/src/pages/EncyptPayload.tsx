@@ -8,9 +8,13 @@ function EncryptPayload() {
     const [key, setKey] = useState("");
     const [payload, setPayload] = useState("");
     const [data, setData] = useState("");
+    const [encrypting, setEncrypting] = useState("");
 
     function encryptPayload() {
-        encrypt(key, payload).then(setData);
+        setEncrypting("Encrypting...");
+        encrypt(key, payload).then(setData).catch(alert).finally(
+            () => setEncrypting("")
+        );
     }
 
     return (
@@ -21,8 +25,11 @@ function EncryptPayload() {
                 <TextBox changeState={setKey} label="Public Key" id="key" />
                 <TextBox changeState={setPayload} label="Payload" id="payload" />
             </div>
-            <p>{data}</p>
-            <button onClick={encryptPayload}>Encrypt Payload</button>
+            <p>{`${encrypting}${data}`}</p>
+            <button
+                onClick={encryptPayload}
+                disabled={Boolean(encrypting)}
+            >Encrypt Payload</button>
         </>
     );
 }

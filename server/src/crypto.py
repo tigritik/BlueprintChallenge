@@ -4,16 +4,21 @@ from nacl.public import PublicKey, SealedBox, PrivateKey
 
 
 def encrypt_payload(key: str, payload: str) -> str:
-    print(key, payload)
-    key_bytes = b64decode(key)
-    public_key = PublicKey(key_bytes)
-    box = SealedBox(public_key)
-    encrypted_bytes = box.encrypt(payload.encode())
-    return b64encode(encrypted_bytes).decode()
+    try:
+        key_bytes = b64decode(key)
+        public_key = PublicKey(key_bytes)
+        box = SealedBox(public_key)
+        encrypted_bytes = box.encrypt(payload.encode())
+        return b64encode(encrypted_bytes).decode()
+    except Exception as e:
+        raise ValueError from e
 
 def decrypt_payload(key: str, payload: str) -> str:
-    key_bytes = b64decode(key)
-    private_key = PrivateKey(key_bytes)
-    box = SealedBox(private_key)
-    decrypted_bytes = box.decrypt(b64decode(payload))
-    return decrypted_bytes.decode()
+    try:
+        key_bytes = b64decode(key)
+        private_key = PrivateKey(key_bytes)
+        box = SealedBox(private_key)
+        decrypted_bytes = box.decrypt(b64decode(payload))
+        return decrypted_bytes.decode()
+    except Exception as e:
+        raise ValueError from e

@@ -11,7 +11,7 @@ export async function encrypt(key: string, payload: string) {
         }
     );
 
-    if (!response.ok) return "";
+    if (!response.ok) throw new Error("Invalid Public Key!");
 
     return (await response.json()).data as string;
 }
@@ -25,14 +25,18 @@ export async function decrypt(key: string, payload: string) {
         }
     );
 
-    if (!response.ok) return "";
+    if (!response.ok) throw new Error("Invalid Private Key!");
 
     return (await response.json()).data as string;
 }
 
 export async function getLogs(size: number, offset: number) {
     const response = await fetch(`${apiEndpoint}/logs?size=${size}&offset=${offset}`);
+
+    if (response.status === 400) throw new Error("Search Parameters: Out of Range!");
+    if (response.status === 422) throw new Error("Search Parameters: Invalid Value!");
     if (!response.ok) return [];
+
     return await response.json() as Log[];
 }
 

@@ -7,7 +7,7 @@ import {getLogCount} from "../api_wrapper.ts";
 
 function ViewLogs() {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [size, setSize] = useState(10);
+    const [size, setSize] = useState(0);
     const [offset, setOffset] = useState(0);
     const [totalLogs, setTotalLogs] = useState(0);
 
@@ -30,7 +30,7 @@ function ViewLogs() {
     }, [searchParams, setSearchParams]);
 
     useEffect(() => {
-        getLogCount().then(logs => setTotalLogs(logs-1));
+        getLogCount().then(count => setTotalLogs(count-1));
     }, []);
 
     return (
