@@ -1,16 +1,15 @@
 import os
+
 import psycopg2
 
 
 def _connect():
     connection = psycopg2.connect(
-        host=os.getenv("DB_HOST"),
-        dbname='blueprint_db',
-        user='admin',
-        password='admin'
+        host=os.getenv("DB_HOST"), dbname="blueprint_db", user="admin", password="admin"
     )
 
     return connection
+
 
 def insert(table: str, cols: str, values: tuple) -> None:
     connection, cursor = None, None
@@ -18,13 +17,14 @@ def insert(table: str, cols: str, values: tuple) -> None:
     try:
         connection = _connect()
         cursor = connection.cursor()
-        cursor.execute(
-            f"INSERT INTO {table} {cols} VALUES {values}"
-        )
+        cursor.execute(f"INSERT INTO {table} {cols} VALUES {values}")
         connection.commit()
     finally:
-        if cursor: cursor.close()
-        if connection: connection.close()
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()
+
 
 def select(table: str) -> list:
     connection, cursor = None, None
@@ -35,5 +35,7 @@ def select(table: str) -> list:
         cursor.execute(f"SELECT * FROM {table}")
         return cursor.fetchall()
     finally:
-        if cursor: cursor.close()
-        if connection: connection.close()
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()

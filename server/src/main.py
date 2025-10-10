@@ -1,12 +1,12 @@
-from fastapi import FastAPI, Request, HTTPException, status
+import os
+
+from dotenv import load_dotenv
+from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from src.crypto import encrypt_payload, decrypt_payload
-from src.logs import fetch_logs, add_log, get_log_count
-
-from dotenv import load_dotenv
-import os
+from src.crypto import decrypt_payload, encrypt_payload
+from src.logs import add_log, fetch_logs, get_log_count
 
 load_dotenv()
 
@@ -19,8 +19,9 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
+
 
 class RequestBody(BaseModel):
     key: str
@@ -37,6 +38,7 @@ async def encrypt(request: Request, body: RequestBody):
     add_log(ip, data)
     return {"data": data}
 
+
 @app.post("/api/v1/decrypt")
 async def decrypt(request: Request, body: RequestBody):
     try:
@@ -47,12 +49,14 @@ async def decrypt(request: Request, body: RequestBody):
     add_log(ip, data)
     return {"data": data}
 
+
 @app.get("/api/v1/logs")
 async def get_logs(size: int, offset: int):
     if size < 0 or offset < 0:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 
     return fetch_logs(size, offset)
+
 
 @app.get("/api/v1/log-count")
 async def count_logs():

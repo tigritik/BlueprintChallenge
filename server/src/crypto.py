@@ -1,6 +1,6 @@
 from base64 import b64decode, b64encode
 
-from nacl.public import PublicKey, SealedBox, PrivateKey
+from nacl.public import PrivateKey, PublicKey, SealedBox
 
 
 def encrypt_payload(key: str, payload: str) -> str:
@@ -12,6 +12,7 @@ def encrypt_payload(key: str, payload: str) -> str:
         return b64encode(encrypted_bytes).decode()
     except Exception as e:
         raise ValueError from e
+
 
 def decrypt_payload(key: str, payload: str) -> str:
     try:
