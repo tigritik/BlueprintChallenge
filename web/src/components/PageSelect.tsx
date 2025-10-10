@@ -1,4 +1,5 @@
 import type {ChangeEvent, Dispatch, SetStateAction} from "react";
+import "./pageselect.css";
 
 type PageSelectProps = {
     changeOffset: Dispatch<SetStateAction<number>>,
@@ -35,15 +36,15 @@ function PageSelect(props: PageSelectProps) {
     }
 
     return (
-        <div>
-            <button onClick={decrementPage}>{"<"}</button>
-            <div>
-                <p>{`Logs Per Page: ${pageSize}`}</p>
-                <select onChange={selectPageSize} value={pageSize}>
+        <div className="pagination-controls">
+            <button className="pagination-button" onClick={decrementPage}>{"<"}</button>
+            <div className="page-size-control">
+                <p className="page-size-label">{`Logs Per Page: ${pageSize}`}</p>
+                <select className="page-size-select" onChange={selectPageSize} value={pageSize}>
                     {generatePageOptions()}
                 </select>
             </div>
-            <button onClick={incrementPage}>{">"}</button>
+            <button className="pagination-button" onClick={incrementPage}>{">"}</button>
         </div>
     );
 }

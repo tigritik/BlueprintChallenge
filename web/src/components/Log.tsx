@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {getLogs} from "../api_wrapper.ts";
 import {useNavigate} from "react-router-dom";
+import "./log.css"
 
 export type Log = {
     uuid: string,
@@ -10,9 +11,18 @@ export type Log = {
 }
 
 function DisplayLog(props: Log) {
+    const date = new Date(props.timestamp*1000).toLocaleString("en-US");
+
     return (
-        <div>
-            <p>{JSON.stringify(props)}</p>
+        <div className="log-entry">
+            <div className="log-header">
+                <span className="log-uuid">{props.uuid}</span>
+                <span className="log-timestamp">{date}</span>
+            </div>
+            <div className="log-details">
+                <div><strong>IP:</strong> {props.ip}</div>
+                <div><strong>Data:</strong> {props.data}</div>
+            </div>
         </div>
     );
 }
@@ -35,6 +45,8 @@ function DisplayLogs(props: LogDisplayProps) {
     }, [props, navigate]);
 
     if (loading) return <p>Loading Logs...</p>;
+
+    if (!logs.length) return <p>No Logs Available!</p>;
 
     return (
         logs.map((log: Log, i: number) => {

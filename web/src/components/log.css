@@ -1,0 +1,41 @@
+.log-entry {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 12px 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: background-color 0.2s ease;
+}
+
+.log-entry:hover {
+    background-color: #f1f1f1;
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.log-uuid {
+    font-weight: bold;
+    color: #333;
+    font-family: monospace;
+    overflow-wrap: break-word;
+}
+
+.log-timestamp {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.log-details {
+    font-size: 0.95em;
+    color: #444;
+}
+
+.log-details div {
+    margin: 4px 0;
+}

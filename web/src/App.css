@@ -5,38 +5,92 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.home-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  flex: 1;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.home-header {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.home-logo {
+  max-width: 500px;
+  height: auto;
+  margin-bottom: 20px;
 }
 
-.card {
-  padding: 2em;
+.home-title {
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
-.read-the-docs {
-  color: #888;
+.home-description {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.key-info {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.key-info h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #222;
+}
+
+.key-info ul {
+  padding-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.key-info li {
+  margin-bottom: 6px;
+  list-style: none;
+}
+
+.key-example {
+  margin-top: 10px;
+}
+
+.key-block {
+  background-color: #f0f0f0;
+  padding: 10px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  word-break: break-word;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+}
+
+.site-footer {
+  margin-top: 60px;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+  border-top: 1px solid #ddd;
+  background-color: #f8f8f8;
+}
+
+.site-footer a {
+  color: #007bff;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
 }
