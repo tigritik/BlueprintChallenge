@@ -1,0 +1,19 @@
+name: Backend Linter Check
+
+on: [push]
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install packages
+        working-directory: ./server
+        run: pip install -r requirements.dev.txt
+      - name: Run Black
+        working-directory: ./server
+        run: black ./src
+      - name: Run Pylint
+        working-directory: ./server
+        run: pylint ./src

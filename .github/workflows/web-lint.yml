@@ -1,0 +1,16 @@
+name: Frontend Linter Check
+
+on: [push]
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install packages
+        working-directory: ./web
+        run: npm install
+      - name: Run ESLint
+        working-directory: ./web
+        run: npm run lint
