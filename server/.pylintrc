@@ -1,3 +1,5 @@
 [MESSAGES CONTROL]
 # Disable missing docstring checks for modules, classes, and functions/methods
-disable=C0114,C0115,C0116
+# Disable "unable to import error"
+# Disable "too few public methods"
+disable=C0114,C0115,C0116,E0401,R0903
