@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import '../App.css'
+import { useState } from "react";
+import "../App.css";
 import TextBox from "../components/TextBox.tsx";
 import {encrypt} from "../api_wrapper.ts";
 import Navbar from "../components/Navbar.tsx";
@@ -23,7 +23,7 @@ function EncryptPayload() {
             <h1>Encrypt Payload</h1>
             <div>
                 <TextBox changeState={setKey} label="Public Key" id="key" />
-                <TextBox changeState={setPayload} label="Payload" id="payload" />
+                <TextBox changeState={setPayload} label="Payload" id="payload"/>
             </div>
             <p>{`${encrypting}${data}`}</p>
             <button

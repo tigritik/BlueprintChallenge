@@ -37,14 +37,21 @@ function PageSelect(props: PageSelectProps) {
 
     return (
         <div className="pagination-controls">
-            <button className="pagination-button" onClick={decrementPage}>{"<"}</button>
+            <button className="pagination-button" onClick={decrementPage}>
+                {"<"}
+            </button>
             <div className="page-size-control">
-                <p className="page-size-label">{`Logs Per Page: ${pageSize}`}</p>
-                <select className="page-size-select" onChange={selectPageSize} value={pageSize}>
+                <p className="page-size-label">
+                    {`Logs Per Page: ${pageSize}`}
+                </p>
+                <select className="page-size-select" 
+                    onChange={selectPageSize} value={pageSize}>
                     {generatePageOptions()}
                 </select>
             </div>
-            <button className="pagination-button" onClick={incrementPage}>{">"}</button>
+            <button className="pagination-button" onClick={incrementPage}>
+                {">"}
+            </button>
         </div>
     );
 }

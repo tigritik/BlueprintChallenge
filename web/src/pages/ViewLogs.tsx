@@ -38,12 +38,14 @@ function ViewLogs() {
             <Navbar />
             <h1>View Logs</h1>
             <div>
-                <p>{`Page ${(offset/size)+1}/${Math.trunc(totalLogs/size)+1}`}</p>
+                <p>
+                    {`Page ${(offset/size)+1}/${Math.trunc(totalLogs/size)+1}`}
+                </p>
                 <DisplayLogs size={size} offset={offset} />
             </div>
             <PageSelect
-                changeOffset={setOffset} changeSize={setSize}
-                minOffset={0} maxOffset={totalLogs-(totalLogs%size)} pageSize={size}
+                changeOffset={setOffset} changeSize={setSize} minOffset={0}
+                maxOffset={totalLogs-(totalLogs%size)} pageSize={size}
             />
         </>
     );

@@ -1,4 +1,4 @@
-import './App.css'
+import "./App.css";
 import Navbar from "./components/Navbar.tsx";
 
 function App() {
@@ -8,12 +8,14 @@ function App() {
             <div className="home-container">
                 <header className="home-header">
                     <h1 className="home-title">SecureLog</h1>
-                    <img src="/logo.png" alt="Site Logo" className="home-logo" />
+                    <img src="/logo.png"
+                        alt="Site Logo" className="home-logo" />
                     <p className="home-description">
-                        SecureLog is a leading contributor to active cryptography
-                        research efforts. We believe in free and accessible
-                        security protocols for everyone. Use our website to
-                        encrypt/decrypt your data.
+                        SecureLog is a leading contributor to active
+                        cryptography research efforts. We believe in
+                        free and accessible security protocols for
+                        everyone. Use our website to encrypt/decrypt
+                        your data.
                     </p>
                 </header>
 

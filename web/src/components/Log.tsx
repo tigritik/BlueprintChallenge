@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {getLogs} from "../api_wrapper.ts";
 import {useNavigate} from "react-router-dom";
-import "./log.css"
+import "./log.css";
 
 export type Log = {
     uuid: string,
@@ -51,7 +51,10 @@ function DisplayLogs(props: LogDisplayProps) {
     return (
         logs.map((log: Log, i: number) => {
             const {uuid, timestamp, ip, data} = log;
-            return <DisplayLog key={i} uuid={uuid} timestamp={timestamp} ip={ip} data={data} />;
+            return <DisplayLog
+                key={i} uuid={uuid}
+                timestamp={timestamp} ip={ip} data={data}
+            />;
         })
     );
 }

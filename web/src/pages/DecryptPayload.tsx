@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import '../App.css'
+import { useState } from "react";
+import "../App.css";
 import TextBox from "../components/TextBox.tsx";
 import {decrypt} from "../api_wrapper.ts";
 import Navbar from "../components/Navbar.tsx";
@@ -23,7 +23,7 @@ function DecryptPayload() {
             <h1>Decrypt Payload</h1>
             <div>
                 <TextBox changeState={setKey} label="Private Key" id="key" />
-                <TextBox changeState={setPayload} label="Payload" id="payload" />
+                <TextBox changeState={setPayload} label="Payload" id="payload"/>
             </div>
             <p>{`${decrypting}${data}`}</p>
             <button

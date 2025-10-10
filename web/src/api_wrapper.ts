@@ -1,6 +1,6 @@
 import type {Log} from "./components/Log.tsx";
 
-const apiEndpoint = "http://localhost:8000/api/v1"
+const apiEndpoint = "http://localhost:8000/api/v1";
 
 export async function encrypt(key: string, payload: string) {
     const response = await fetch(`${apiEndpoint}/encrypt`,
@@ -31,10 +31,13 @@ export async function decrypt(key: string, payload: string) {
 }
 
 export async function getLogs(size: number, offset: number) {
-    const response = await fetch(`${apiEndpoint}/logs?size=${size}&offset=${offset}`);
+    const response =
+        await fetch(`${apiEndpoint}/logs?size=${size}&offset=${offset}`);
 
-    if (response.status === 400) throw new Error("Search Parameters: Out of Range!");
-    if (response.status === 422) throw new Error("Search Parameters: Invalid Value!");
+    if (response.status === 400)
+        throw new Error("Search Parameters: Out of Range!");
+    if (response.status === 422)
+        throw new Error("Search Parameters: Invalid Value!");
     if (!response.ok) return [];
 
     return await response.json() as Log[];
